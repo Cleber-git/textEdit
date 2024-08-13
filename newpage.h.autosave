@@ -2,6 +2,7 @@
 #define NEWPAGE_H
 
 #include <QDialog>
+#in
 
 namespace Ui {
 class NewPage;
@@ -16,12 +17,14 @@ public:
     ~NewPage();
 public slots:
     void clearCurrentTab(bool);
-    // void saveTable(bool);
+    void saveTable(bool);
     void deleteTable(bool);
     void addTable(bool);
+    
 
 private:
     Ui::NewPage *ui;
+    
 };
 
 #endif // NEWPAGE_H

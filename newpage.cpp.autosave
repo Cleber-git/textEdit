@@ -2,6 +2,9 @@
 #include "ui_newpage.h"
 #include <QProcess>
 #include <QLabel>
+#include <QFile>
+#include <QApplication>
+#include <QPlainTextEdit>
 
 NewPage::NewPage(QWidget *parent)
     : QDialog(parent)
@@ -30,6 +33,14 @@ void NewPage::deleteTable(bool any){
 }
 
 
-void NewPage::addTable(bool){
-    ui->tabWidget->addTab(new QTabWidget, "new" + QString::number(ui->tabWidget->count() + 1));
+void NewPage::addTable(bool any){
+    ui->tabWidget->addTab(new QTabWidget, "Tab " + QString::number(ui->tabWidget->count() + 1));
+    listPlains.push_back(new QPlainTextEdit());
 }
+
+void NewPage::saveTable(bool any){
+    // QFile file(qApp->applicationDirPath() +  );
+    
+}
+
+void NewPage::insertPlain(QP)
