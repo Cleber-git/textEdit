@@ -25,14 +25,14 @@ class Ui_NewPage
 public:
     QTabWidget *tabWidget;
     QWidget *tab;
+    QPlainTextEdit *plainTextEdit;
+    QWidget *tab_2;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *Add_tab;
     QPushButton *Delet_tab;
     QPushButton *Clear_tab;
     QPushButton *Save;
-    QPlainTextEdit *plainTextEdit;
-    QWidget *tab_2;
 
     void setupUi(QDialog *NewPage)
     {
@@ -41,46 +41,57 @@ public:
         NewPage->resize(1500, 750);
         tabWidget = new QTabWidget(NewPage);
         tabWidget->setObjectName("tabWidget");
-        tabWidget->setGeometry(QRect(0, 0, 1500, 750));
+        tabWidget->setGeometry(QRect(0, 0, 1371, 751));
         tab = new QWidget();
         tab->setObjectName("tab");
-        verticalLayoutWidget = new QWidget(tab);
+        plainTextEdit = new QPlainTextEdit(tab);
+        plainTextEdit->setObjectName("plainTextEdit");
+        plainTextEdit->setGeometry(QRect(0, 0, 1371, 720));
+        tabWidget->addTab(tab, QString());
+        tab_2 = new QWidget();
+        tab_2->setObjectName("tab_2");
+        tabWidget->addTab(tab_2, QString());
+        verticalLayoutWidget = new QWidget(NewPage);
         verticalLayoutWidget->setObjectName("verticalLayoutWidget");
-        verticalLayoutWidget->setGeometry(QRect(1400, 0, 111, 721));
+        verticalLayoutWidget->setGeometry(QRect(1370, 30, 121, 721));
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         Add_tab = new QPushButton(verticalLayoutWidget);
         Add_tab->setObjectName("Add_tab");
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(Add_tab->sizePolicy().hasHeightForWidth());
+        Add_tab->setSizePolicy(sizePolicy);
 
         verticalLayout->addWidget(Add_tab);
 
         Delet_tab = new QPushButton(verticalLayoutWidget);
         Delet_tab->setObjectName("Delet_tab");
+        sizePolicy.setHeightForWidth(Delet_tab->sizePolicy().hasHeightForWidth());
+        Delet_tab->setSizePolicy(sizePolicy);
 
         verticalLayout->addWidget(Delet_tab);
 
         Clear_tab = new QPushButton(verticalLayoutWidget);
         Clear_tab->setObjectName("Clear_tab");
+        sizePolicy.setHeightForWidth(Clear_tab->sizePolicy().hasHeightForWidth());
+        Clear_tab->setSizePolicy(sizePolicy);
 
         verticalLayout->addWidget(Clear_tab);
 
         Save = new QPushButton(verticalLayoutWidget);
         Save->setObjectName("Save");
+        sizePolicy.setHeightForWidth(Save->sizePolicy().hasHeightForWidth());
+        Save->setSizePolicy(sizePolicy);
 
         verticalLayout->addWidget(Save);
 
-        plainTextEdit = new QPlainTextEdit(tab);
-        plainTextEdit->setObjectName("plainTextEdit");
-        plainTextEdit->setGeometry(QRect(0, 0, 1400, 720));
-        tabWidget->addTab(tab, QString());
-        tab_2 = new QWidget();
-        tab_2->setObjectName("tab_2");
-        tabWidget->addTab(tab_2, QString());
 
         retranslateUi(NewPage);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(NewPage);
@@ -89,12 +100,12 @@ public:
     void retranslateUi(QDialog *NewPage)
     {
         NewPage->setWindowTitle(QCoreApplication::translate("NewPage", "Dialog", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("NewPage", "Tab 1", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("NewPage", "Tab 2", nullptr));
         Add_tab->setText(QCoreApplication::translate("NewPage", "Add Tab", nullptr));
         Delet_tab->setText(QCoreApplication::translate("NewPage", "Delete tab", nullptr));
         Clear_tab->setText(QCoreApplication::translate("NewPage", "Clear Tab", nullptr));
         Save->setText(QCoreApplication::translate("NewPage", "Save ", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("NewPage", "Tab 1", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("NewPage", "Tab 2", nullptr));
     } // retranslateUi
 
 };

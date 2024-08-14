@@ -2,10 +2,10 @@
 #include "ui_newpage.h"
 #include <QProcess>
 #include <QLabel>
-#include <QFile>
 #include <QApplication>
 #include <QPlainTextEdit>
 #include <QDebug>
+#include <QTabWidget>
 
 NewPage::NewPage(QWidget *parent)
     : QDialog(parent)
@@ -13,16 +13,20 @@ NewPage::NewPage(QWidget *parent)
 {
     ui->setupUi(this);
 
+
     connect(ui->Clear_tab, SIGNAL(clicked(bool)), this, SLOT(clearCurrentTab(bool)));
     connect(ui->Delet_tab, SIGNAL(clicked(bool)), this, SLOT(deleteTable(bool)));
     connect(ui->Add_tab, SIGNAL(clicked(bool)), this, SLOT(addTable(bool)));
     connect(ui->Save, SIGNAL(clicked(bool)), this, SLOT(saveTable(bool)));
+
+    connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(setCurrentWidget(int)));
 
     //adicionando os primeiros widgets( os fixos ) da tela. São gerados quando o programa roda.
     listPlains.push_back(ui->plainTextEdit);
     listWidget.push_back(ui->tabWidget);
     qDebug() << "Plains: " << listPlains.count() << "| TabWidgets: " << listWidget.count();
     ui->tabWidget->removeTab(1);
+    currentPlainTextEdit = ui->plainTextEdit;
 
 }
 
@@ -32,7 +36,7 @@ NewPage::~NewPage()
 }
 
 void NewPage::clearCurrentTab(bool any){
-    ui->plainTextEdit->clear();
+    currentPlainTextEdit->clear();
 }
 
 void NewPage::deleteTable(bool any){
@@ -50,7 +54,8 @@ void NewPage::deleteTable(bool any){
 void NewPage::addTable(bool any){
     listPlains.push_back(new QPlainTextEdit);
     listWidget.push_back(new QTabWidget);
-    ui->tabWidget->addTab(listWidget[ui->tabWidget->count()], "Tab " + QString::number(ui->tabWidget->count() + 1));
+    ui->tabWidget->addTab(listWidget[ui->tabWidget->count()],
+                          "Tab " + QString::number(ui->tabWidget->count() + 1));
     callListOfWidgets();
     insertPlain(listPlains, listWidget);
 }
@@ -59,19 +64,18 @@ void NewPage::saveTable(bool any){
     // QFile file(qApp->applicationDirPath() +  );
 }
 
-
-void NewPage::insertPlain(QVector<QPlainTextEdit*> _plainTextEdit, QVector<QTabWidget*> _tabWidget){
-    //
-    //
+// Adiciona o plain ao tabWidget
+void NewPage::insertPlain(QVector<QPlainTextEdit *> _plainTextEdit,
+                          QVector<QTabWidget *> _tabWidget) {
 
     for (int i = 0; i < _plainTextEdit.count(); i++) {
         _plainTextEdit[i] = new QPlainTextEdit(_tabWidget[i]);
-        _plainTextEdit[i]->setGeometry(0,25, 1371, 720);
+        _plainTextEdit[i]->setGeometry(0, 25, 1371, 720);
         _plainTextEdit[i]->show();
     }
 }
 
-
+// Imprimindo a lista de widgets para vizualizar o controle de inserção
 void NewPage::callListOfWidgets(){
     for(auto item:listPlains){
         qDebug() << item;
@@ -80,5 +84,10 @@ void NewPage::callListOfWidgets(){
         qDebug() << item;
     }
     qDebug() << "Plains: " << listPlains.count() << "| TabWigigets: " << listWidget.count();
+}
 
+void NewPage::setCurrentWidget(int index){
+    qDebug() << "called me" << QString::number(index);
+    currentPlainTextEdit = listPlains[index];
+    qDebug() << currentPlainTextEdit;
 }

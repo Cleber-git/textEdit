@@ -20,17 +20,20 @@ public:
 
     void callListOfWidgets();
     void insertPlain(QVector<QPlainTextEdit*> _plainTextEdit, QVector<QTabWidget*> _tabWidget);
+
 public slots:
     void clearCurrentTab(bool);
     void saveTable(bool);
     void deleteTable(bool);
     void addTable(bool);
+    void setCurrentWidget( int index );
 
 
 private:
     Ui::NewPage *ui;
     QVector<QPlainTextEdit*> listPlains;
     QVector<QTabWidget*> listWidget;
+    QPlainTextEdit *currentPlainTextEdit;
 
 };
 

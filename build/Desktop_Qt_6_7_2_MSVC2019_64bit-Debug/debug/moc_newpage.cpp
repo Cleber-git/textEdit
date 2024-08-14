@@ -6,7 +6,8 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../newpage.h"
+#include "../../../../Documents/textEdit/newpage.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -38,7 +39,9 @@ constexpr auto qt_meta_stringdata_CLASSNewPageENDCLASS = QtMocHelpers::stringDat
     "NewPage",
     "clearCurrentTab",
     "",
-    "deleteTable"
+    "saveTable",
+    "deleteTable",
+    "addTable"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -51,7 +54,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSNewPageENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -59,10 +62,14 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSNewPageENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   26,    2, 0x0a,    1 /* Public */,
-       3,    1,   29,    2, 0x0a,    3 /* Public */,
+       1,    1,   38,    2, 0x0a,    1 /* Public */,
+       3,    1,   41,    2, 0x0a,    3 /* Public */,
+       4,    1,   44,    2, 0x0a,    5 /* Public */,
+       5,    1,   47,    2, 0x0a,    7 /* Public */,
 
  // slots: parameters
+    QMetaType::Void, QMetaType::Bool,    2,
+    QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void, QMetaType::Bool,    2,
     QMetaType::Void, QMetaType::Bool,    2,
 
@@ -81,7 +88,13 @@ Q_CONSTINIT const QMetaObject NewPage::staticMetaObject = { {
         // method 'clearCurrentTab'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'saveTable'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
         // method 'deleteTable'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'addTable'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<bool, std::false_type>
     >,
@@ -95,7 +108,9 @@ void NewPage::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         (void)_t;
         switch (_id) {
         case 0: _t->clearCurrentTab((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 1: _t->deleteTable((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 1: _t->saveTable((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 2: _t->deleteTable((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 3: _t->addTable((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         default: ;
         }
     }
@@ -120,13 +135,13 @@ int NewPage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 4;
     }
     return _id;
 }
