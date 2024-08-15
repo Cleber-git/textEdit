@@ -4,7 +4,8 @@
 #include <QDialog>
 #include <QVector>
 #include <QPlainTextEdit>
-#include <QTabWidget>
+#include <QWidget>
+#include <QTabBar>
 
 namespace Ui {
 class NewPage;
@@ -18,8 +19,8 @@ public:
     explicit NewPage(QWidget *parent = nullptr);
     ~NewPage();
 
-    void callListOfWidgets();
-    void insertPlain(QVector<QPlainTextEdit*> _plainTextEdit, QVector<QTabWidget*> _tabWidget);
+    void addPlainInWidget(QPlainTextEdit*, QTabBar*);
+
 
 public slots:
     void clearCurrentTab(bool);
@@ -31,9 +32,10 @@ public slots:
 
 private:
     Ui::NewPage *ui;
-    QVector<QPlainTextEdit*> listPlains;
-    QVector<QTabWidget*> listWidget;
-    QPlainTextEdit *currentPlainTextEdit;
+    int currentPlainTextEdit;
+    QMap< QTabBar*, QPlainTextEdit*> lastConection;
+    QVector<QPlainTextEdit*> plainList;
+
 
 };
 
