@@ -11,6 +11,7 @@ DESTDIR += bin
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    boxtitle.cpp \
     db.cpp \
     dbmanager.cpp \
     main.cpp \
@@ -18,12 +19,14 @@ SOURCES += \
     newpage.cpp
 
 HEADERS += \
+    boxtitle.h \
     db.h \
     dbmanager.h \
     mainwindow.h \
     newpage.h
 
 FORMS += \
+    boxtitle.ui \
     mainwindow.ui \
     newpage.ui
 

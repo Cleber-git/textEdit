@@ -14,6 +14,7 @@ bool Db::openDB( QSqlDatabase &_db ){
         qDebug() << "db aberto";
         return true;
     }
+
     return false;
 }
 
@@ -70,6 +71,7 @@ void Db::SaveInfo(QString _title, QString _body){
         query.prepare(sql);
         query.bindValue(":title", _title);
         query.bindValue(":body", _body);
+
         if(query.exec()){
             qDebug() << "[ Ok ]";
         }

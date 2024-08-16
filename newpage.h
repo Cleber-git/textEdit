@@ -6,6 +6,9 @@
 #include <QPlainTextEdit>
 #include <QWidget>
 #include <QTabBar>
+#include <QSqlDatabase>
+#include "boxtitle.h"
+
 
 namespace Ui {
 class NewPage;
@@ -18,8 +21,8 @@ class NewPage : public QDialog
 public:
     explicit NewPage(QWidget *parent = nullptr);
     ~NewPage();
-
     void addPlainInWidget(QPlainTextEdit*, QTabBar*);
+
 
 
 public slots:
@@ -28,13 +31,16 @@ public slots:
     void deleteTable(bool);
     void addTable(bool);
     void setCurrentWidget( int index );
+    void getTitle(QString);
 
 
 private:
     Ui::NewPage *ui;
-    int currentPlainTextEdit;
+    int m_currentPlainTextEdit;
     QMap< QTabBar*, QPlainTextEdit*> lastConection;
     QVector<QPlainTextEdit*> plainList;
+    BoxTitle *box;
+    QString m_title;
 
 
 };
