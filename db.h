@@ -11,7 +11,7 @@ class Db
 public:
     Db();
     bool openDB( QSqlDatabase &_db );
-    void getTitle();
+    QVector<QString> getTitle();
     QString getBody( QString _title );
 
     // preciso passar o valor de referência para buscar o id
@@ -24,7 +24,7 @@ public:
 
 private:
     QSqlDatabase m_db;
-    QVector<QString> m_title;
+    QVector<QString> m_titleList;
 
 
 

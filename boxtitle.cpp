@@ -16,6 +16,7 @@ BoxTitle::~BoxTitle()
 void BoxTitle::on_pushButton_clicked()
 {
     emit sendTitle(ui->lineEdit->text());
+    ui->lineEdit->clear();
     hide();
 }
 

@@ -34,6 +34,9 @@ public slots:
     void getTitle(QString);
 
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::NewPage *ui;
     int m_currentPlainTextEdit;

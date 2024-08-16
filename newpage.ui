@@ -17,9 +17,9 @@
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>0</y>
+     <y>30</y>
      <width>1371</width>
-     <height>751</height>
+     <height>721</height>
     </rect>
    </property>
    <property name="currentIndex">
@@ -30,9 +30,9 @@
    <property name="geometry">
     <rect>
      <x>1370</x>
-     <y>20</y>
+     <y>60</y>
      <width>121</width>
-     <height>721</height>
+     <height>691</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -89,6 +89,26 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>83</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-weight: bold ;
+font-size: 20px ;
+background: black ;
+color: white ;
+</string>
+   </property>
+   <property name="text">
+    <string>&lt;-</string>
+   </property>
   </widget>
  </widget>
  <resources/>

@@ -1,6 +1,7 @@
 #include "newpage.h"
 #include "ui_newpage.h"
-#include "db.h"
+#include "dbmanager.h"
+#include "mainwindow.h"
 
 #include <QProcess>
 #include <QLabel>
@@ -27,8 +28,6 @@ NewPage::NewPage(QWidget *parent)
 
     connect(box, SIGNAL(sendTitle(QString)), this, SLOT(getTitle(QString)));
 
-    //adicionando os primeiros widgets( os fixos ) da tela. São gerados quando o programa roda.
-
 }
 
 NewPage::~NewPage()
@@ -36,16 +35,21 @@ NewPage::~NewPage()
     delete ui;
 }
 
+// Slot responsável por limpar o texto da plainEditText que está em foco.
 void NewPage::clearCurrentTab(bool any){
     plainList[m_currentPlainTextEdit]->clear();
 }
 
+// Slot responsável por deletar a tab que está em foco e deletar a plainTextEdit
+// na lista de ferramentas plainText.
 void NewPage::deleteTable(bool any){
     if(ui->tabWidget->count() == 1) return;
     plainList.remove(m_currentPlainTextEdit);
     ui->tabWidget->removeTab(m_currentPlainTextEdit);
 }
 
+// Slot responsável por adicionar uma tab a mais ao widget principal
+// ui->tabWidget e adiciona um plainTextEdit à lista de ferramentas plainList.
 void NewPage::addTable(bool any) {
     QTabBar* tabBar = new QTabBar;
     QPlainTextEdit *plainTextEdit = new QPlainTextEdit(tabBar);
@@ -60,21 +64,31 @@ void NewPage::saveTable(bool any) {
     box->show();
 }
 
-
+// slot responsável por receber o sinal de mudança das abas e passar o indice
+// atual para a variável membro m_currentPlainTextEdit
 
 void NewPage::setCurrentWidget(int index){
-    qDebug() << "called me" << QString::number(index);
     m_currentPlainTextEdit = index;
-    // currentPlainTextEdit = listPlains[index];
-    qDebug() << m_currentPlainTextEdit;
 }
 
+// Slot responsável por receber o sinal que contém o título do arquivo fornecido
+// pelo usuário e passar ele para a variável membro m_title e salvar as
+// informações no banco de dados.
 void NewPage::getTitle(QString _title){
-    Db *db = new Db();
+    DbManager &db = DbManager::getInstance();
     m_title = _title;
-    qDebug() << m_title;
-    qDebug() << plainList[m_currentPlainTextEdit]->toPlainText();
     QSqlDatabase database;
-    db->openDB(database);
-    db->SaveInfo(m_title, plainList[m_currentPlainTextEdit]->toPlainText());
+    db.openDB(database);
+    db.SaveInfo(m_title, plainList[m_currentPlainTextEdit]->toPlainText());
+    ui->tabWidget->setTabText(m_currentPlainTextEdit, m_title);
 }
+
+
+
+void NewPage::on_pushButton_clicked()
+{
+    hide();
+    MainWindow *w = new MainWindow();
+    w->show();
+}
+

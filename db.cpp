@@ -11,7 +11,7 @@ bool Db::openDB( QSqlDatabase &_db ){
     m_db.setDatabaseName(path + "/editoresDeTexto.db");
 
     if(m_db.open()){
-        qDebug() << "db aberto";
+        qDebug() << "open db [ OK ]";
         return true;
     }
 
@@ -41,7 +41,7 @@ int Db::countRows(){
 }
 
 //testado: [ OK ]
-void Db::getTitle(){
+QVector<QString> Db::getTitle(){
     QSqlQuery query(m_db);
     QString sql;
 
@@ -52,13 +52,11 @@ void Db::getTitle(){
             qDebug() << "exec";
 
             while(query.next()){
-                if(countRows() == m_title.size()) return;
-                m_title.push_back(query.value(0).toString());
-                qDebug()<< "Lista " << query.value(0).toString();
+                m_titleList.push_back(query.value(0).toString());
             }
         }
     }
-    return;
+    return m_titleList;
 }
 
 //testado [ OK ]
@@ -112,9 +110,19 @@ void Db::update(QString _title, QString _body){
 }
 
 
+QString Db::getBody(QString _title){
+    if(m_db.isOpen()){
+        QSqlQuery query(m_db);
+        QString sql = "Select from Text corpo where titulo = :title";
+        query.prepare(sql);
+        query.bindValue(":title", _title);
 
-
-
+        if(!query.exec() || !query.next()) return "";
+        QString body = query.value(0).toString();
+        return body;
+    }
+    return " conexão com base de dados fechada ";
+}
 
 
 
