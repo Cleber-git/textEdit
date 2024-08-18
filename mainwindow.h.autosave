@@ -56,13 +56,27 @@ public:
      * @return true: Se a função puder armazenar os widgets na mesma linha.\n false: se os widgets já estiverem no fim da linha. Dessa forma o algoritmo muda a próxima posição x e y para a próxima linha.
      */
     bool verify( int x, int currentWidth);
-
+    
+    /**
+     * @brief connectButtons
+     * 
+     * Método responsável por conectar todos os widgets da lista de ferramentas ao slot @ref on_current_button_clicked 
+     */
     void connectButtons();
-
-    void verifyRecurrence(const QVector<auto> list);
-
+    
 public slots:
+    /**
+     * @brief on_m_navigator
+     * 
+     * Slot responspável por chamar a interface da classe @ref NewPage
+     */
     void on_m_navigator(bool);
+    
+    /**
+     * @brief on_current_button_clicked
+     * 
+     * Slot responsável por verificar qual botão foi pressionado através a
+     */
     void on_current_button_clicked();
 private:
     Ui::MainWindow *ui;
@@ -71,6 +85,5 @@ private:
     DbManager &m_db = DbManager::getInstance();
     QVector<QString> listTitle;
     POS lastPositionButton;
-    QPushButton *currentButton;
 };
 #endif // MAINWINDOW_H
