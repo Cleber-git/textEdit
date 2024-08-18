@@ -95,19 +95,25 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>83</width>
+     <width>51</width>
      <height>29</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font-weight: bold ;
+    <string notr="true">QPushButton{
+font-weight: bold ;
 font-size: 20px ;
+background: white ;
+color: black ;
+}
+QPushButton::pressed{
 background: black ;
 color: white ;
+}
 </string>
    </property>
    <property name="text">
-    <string>&lt;-</string>
+    <string>&lt;=</string>
    </property>
   </widget>
  </widget>

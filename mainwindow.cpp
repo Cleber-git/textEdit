@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QSizePolicy>
-
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -14,10 +14,9 @@ MainWindow::MainWindow(QWidget *parent)
     QSqlDatabase database;
     m_db.openDB(database);
 
-    // m_navigator->move(1400,350);
-    m_navigator->setGeometry(1445, 10, 40, 30);
+    m_navigator->setGeometry(1450, 40, 40, 30);
     m_navigator->setFont(QFont("Arial", 18, 800));
-    m_navigator->setStyleSheet("Background: grey ;color: white ; ");
+    m_navigator->setStyleSheet("Background: rgb(51, 8, 115) ;color: white ; border-radius: 15px ;");
 
     m_navigator->show();
     m_navigator->setText("+");
@@ -51,8 +50,12 @@ void MainWindow::makeInit(){
 void MainWindow::createWidgets(){
     for ( QString titulo : listTitle ) {
         QPushButton *pushButton = new QPushButton(titulo, this);
-        pushButton->setStyleSheet("background: white ;border-image: url(:/ferramentas/build/Desktop_Qt_6_7_2_MSVC2019_64bit-Debug/bin/button.png);");
+//     pushButton->setStyleSheet("background: white ;border-image: url(:/ferramentas/build/Desktop_Qt_6_7_2_MSVC2019_64bit-Debug/bin/button.png);");
+        pushButton->setStyleSheet("background: white ; border-radius: 50px ; font-weight: bold ; color: rgb(51, 8, 115); font-family: cursive ; ");
         listScreens.push_back(pushButton);
+
+        //// Como vou organizar os botões na tela?
+        //    Is the first content?
         if(titulo == listTitle[0]){
             pushButton->setGeometry(10, 10, 150, 100);
             lastPositionButton.x = 10;
@@ -65,7 +68,6 @@ void MainWindow::createWidgets(){
         lastPositionButton.x = lastPositionButton.x + (lastPositionButton.w+10);
         if(!verify(lastPositionButton.x, lastPositionButton.w)){
             qDebug() << "to no fim da tela: " << titulo;
-
             lastPositionButton.x = 10;
             lastPositionButton.y = (lastPositionButton.h + lastPositionButton.y + 10);
             pushButton->setGeometry(lastPositionButton.x, lastPositionButton.y, lastPositionButton.w, lastPositionButton.h);
@@ -75,11 +77,8 @@ void MainWindow::createWidgets(){
 
         pushButton->setGeometry(lastPositionButton.x, lastPositionButton.y, lastPositionButton.w, lastPositionButton.h);
         pushButton->show();
-
     }
-
 }
-
 
 bool MainWindow::verify(int x, int currentWidth){
     qDebug() << currentWidth + lastPositionButton.x;
