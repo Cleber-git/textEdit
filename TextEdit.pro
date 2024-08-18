@@ -16,19 +16,22 @@ SOURCES += \
     dbmanager.cpp \
     main.cpp \
     mainwindow.cpp \
-    newpage.cpp
+    newpage.cpp \
+    showbody.cpp
 
 HEADERS += \
     boxtitle.h \
     db.h \
     dbmanager.h \
     mainwindow.h \
-    newpage.h
+    newpage.h \
+    showbody.h
 
 FORMS += \
     boxtitle.ui \
     mainwindow.ui \
-    newpage.ui
+    newpage.ui \
+    showbody.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -51,19 +51,34 @@ public:
      * Método responsável por acompanhar o posicionamento dos widgets para que não passe do intervalo do tamanho da tela que estão sendo organizados. \n
      * Calcula se a posição x somado com o tamanho do widget  vai passar do tamanho da tela, se sim, ele vai direcionar o widget para a próxima linha, usando a struct que obtém as posições.
      *
-     * @param x
      * @param currentWidth
      * @return true: Se a função puder armazenar os widgets na mesma linha.\n false: se os widgets já estiverem no fim da linha. Dessa forma o algoritmo muda a próxima posição x e y para a próxima linha.
      */
-    bool verify( int x, int currentWidth);
+    bool verify( int _currentWidth);
 
+    /**
+     * @brief connectButtons
+     *
+     * Método responsável por conectar todos os widgets da lista de ferramentas ao slot @ref on_current_button_clicked
+     */
     void connectButtons();
 
-    void verifyRecurrence(const QVector<auto> list);
-
 public slots:
+    /**
+     * @brief on_m_navigator
+     *
+     * Slot responspável por chamar a interface da classe @ref NewPage
+     */
     void on_m_navigator(bool);
+
+    /**
+     * @brief on_current_button_clicked
+     *
+     * Slot responsável por verificar qual botão foi pressionado através do método *isChecked* e executar alguma função à partir disso
+     */
     void on_current_button_clicked();
+
+    void showBodyByTitle(QString _title);
 private:
     Ui::MainWindow *ui;
     NewPage page;
@@ -71,6 +86,5 @@ private:
     DbManager &m_db = DbManager::getInstance();
     QVector<QString> listTitle;
     POS lastPositionButton;
-    QPushButton *currentButton;
 };
 #endif // MAINWINDOW_H

@@ -68,8 +68,7 @@ void NewPage::setCurrentWidget(int index){
 void NewPage::getTitle(QString _title){
     DbManager &db = DbManager::getInstance();
     m_title = _title;
-    QSqlDatabase database;
-    db.openDB(database);
+//    db.openDB();
     db.SaveInfo(m_title, plainList[m_currentPlainTextEdit]->toPlainText());
     ui->tabWidget->setTabText(m_currentPlainTextEdit, m_title);
 }

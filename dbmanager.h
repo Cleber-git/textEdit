@@ -10,7 +10,7 @@ class DbManager
 public:
     static DbManager &getInstance();
     DbManager(const DbManager&) = delete;
-    bool openDB( QSqlDatabase &_db );
+    bool openDB();
     QVector<QString> getTitle();
     QString getBody( QString _title );
 

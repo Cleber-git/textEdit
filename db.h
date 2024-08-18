@@ -10,7 +10,7 @@ class Db
 {
 public:
     Db();
-    bool openDB( QSqlDatabase &_db );
+    bool openDB();
     QVector<QString> getTitle();
     QString getBody( QString _title );
 

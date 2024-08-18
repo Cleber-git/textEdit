@@ -4,8 +4,8 @@
 Db::Db() {}
 
 //testado: [ OK ]
-bool Db::openDB( QSqlDatabase &_db ){
-    m_db = _db;
+bool Db::openDB(){
+    if(m_db.isOpen()) return true;
     QString path = qApp->applicationDirPath();
     m_db = QSqlDatabase::addDatabase("QSQLITE");
     m_db.setDatabaseName(path + "/editoresDeTexto.db");
@@ -14,7 +14,6 @@ bool Db::openDB( QSqlDatabase &_db ){
         qDebug() << "open db [ OK ]";
         return true;
     }
-
     return false;
 }
 
@@ -34,10 +33,13 @@ int Db::countRows(){
             }
         }else{
             qDebug() << "Não executado";
-        }
-
+            return 0;
+        } 
     }
-    return 0;
+    qDebug() << "chamei a recursiva";
+
+//    openDB();
+//    countRows();
 }
 
 //testado: [ OK ]
@@ -46,17 +48,22 @@ QVector<QString> Db::getTitle(){
     QString sql;
 
     if(m_db.isOpen()){
+        qDebug() << "getTitle acess";
         sql = "Select titulo from Text";
         query.prepare(sql);
         if(query.exec()){
-            qDebug() << "exec";
-
             while(query.next()){
                 m_titleList.push_back(query.value(0).toString());
             }
+            return m_titleList;
         }
+        qDebug() << "[ getTitle ] " <<"Não foi possível executar a busca por títulos. ";
+        return m_titleList;
     }
-    return m_titleList;
+    qDebug() << "chamei a recursiva getTitle";
+    m_titleList.clear();
+    openDB();
+    getTitle();
 }
 
 //testado [ OK ]
@@ -72,8 +79,15 @@ void Db::SaveInfo(QString _title, QString _body){
 
         if(query.exec()){
             qDebug() << "[ Ok ]";
+            return;
         }
+        qDebug() << "[ SaveInfo ] "<< "Não foi possível executar a query de salvar informações na base de dados";
+        return;
     }
+    qDebug() << "chamei a recursiva";
+
+//    openDB();
+//    SaveInfo(_title, _body);
 }
 
 
@@ -88,8 +102,16 @@ void Db::deleteInfo(QString _title) {
         query.bindValue(":title", _title);
         if (query.exec()) {
             qDebug() << "Deletado";
+            m_db.close();
+            return;
         }
+        qDebug() <<"[ deleteInfo ] " << "Não foi possível executar query que deleta informações da base de dados";
+        return;
     }
+    qDebug() << "chamei a recursiva";
+
+//    openDB();
+//    deleteInfo(_title);
 }
 
 // testado:[ OK ]
@@ -105,27 +127,35 @@ void Db::update(QString _title, QString _body){
 
         if(query.exec()){
             qDebug() <<" Update OK";
+            return;
         }
+        qDebug() << "[ update ] " << "Não foi possível executar a query de update dos dados";
+        return;
     }
+    qDebug() << "chamei a recursiva";
+
+//    openDB();
+//    update(_title, _body);
 }
 
 
 QString Db::getBody(QString _title){
     if(m_db.isOpen()){
         QSqlQuery query(m_db);
-        QString sql = "Select from Text corpo where titulo = :title";
+        QString sql = "Select corpo from Text where titulo = :title";
         query.prepare(sql);
         query.bindValue(":title", _title);
 
-        if(!query.exec() || !query.next()) return "";
-        QString body = query.value(0).toString();
-        return body;
+        if(!query.exec()) {
+            qDebug() << "[ getBody ] "<< "Não foi possível executar a query que obtém os dados da coluna -corpo- do banco de dados";
+            return "Empty";
+        };
+        if(query.next()){
+            QString body = query.value(0).toString();
+            return body;
+        }
     }
-    return " conexão com base de dados fechada ";
+    qDebug() << "chamei a recursiva getBody";
+    openDB();
+    getBody(_title);
 }
-
-
-
-
-
-

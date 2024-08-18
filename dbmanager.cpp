@@ -13,8 +13,8 @@ DbManager &DbManager::getInstance(){
     }
     return (*instance);
 }
-bool DbManager::openDB( QSqlDatabase &_db ){
-    return m_db.openDB(_db);
+bool DbManager::openDB( ){
+    return m_db.openDB();
 }
 
 QVector<QString> DbManager::getTitle(){
