@@ -7,6 +7,7 @@
 
 #include "newpage.h"
 #include "dbmanager.h"
+#include "showbody.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -79,6 +80,9 @@ public slots:
     void on_current_button_clicked();
 
     void showBodyByTitle(QString _title);
+
+signals:
+    void sendTitle(QString);
 private:
     Ui::MainWindow *ui;
     NewPage page;
@@ -86,5 +90,7 @@ private:
     DbManager &m_db = DbManager::getInstance();
     QVector<QString> listTitle;
     POS lastPositionButton;
+    ShowBody* showBody = new ShowBody;
+    QString m_title;
 };
 #endif // MAINWINDOW_H

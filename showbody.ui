@@ -17,10 +17,23 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>30</y>
      <width>1291</width>
-     <height>641</height>
+     <height>621</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="msg_info">
+   <property name="geometry">
+    <rect>
+     <x>1130</x>
+     <y>10</y>
+     <width>81</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

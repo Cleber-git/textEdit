@@ -17,10 +17,12 @@ MainWindow::MainWindow(QWidget *parent)
     m_navigator->setGeometry(1450, 40, 40, 30);
     m_navigator->setFont(QFont("Arial", 18, 800));
     m_navigator->setStyleSheet("Background: rgb(51, 8, 115) ;color: white ; border-radius: 15px ;");
-
     m_navigator->show();
     m_navigator->setText("+");
+
     connect(m_navigator, SIGNAL(clicked(bool)), this, SLOT(on_m_navigator(bool)));
+    connect(this, SIGNAL(sendTitle(QString)), showBody, SLOT(receiveTitle(QString)));
+
     makeInit();
     this->setStyleSheet("background: #363636 ;");
 
@@ -101,14 +103,13 @@ void MainWindow::on_current_button_clicked(){
     for(QPushButton* button: listScreens){
         if (button->isChecked()) {
             showBodyByTitle(button->text());
+            emit sendTitle(button->text());
             button->setChecked(false);
         }
-
     }
 }
 
 void MainWindow::showBodyByTitle(QString _title){
-    ShowBody* showBody = new ShowBody();
     QString body = m_db.getBody(_title);
     qDebug() << body;
     showBody->setPlainEditText(body);
