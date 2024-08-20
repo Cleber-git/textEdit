@@ -36,6 +36,24 @@
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="lbl_ok">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>21</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: green ;
+font-weight: bold ;
+</string>
+   </property>
+   <property name="text">
+    <string>Ok</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

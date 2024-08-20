@@ -112,11 +112,8 @@ void MainWindow::on_current_button_clicked(){
 void MainWindow::showBodyByTitle(QString _title){
     QString body = m_db.getBody(_title);
     qDebug() << body;
+    showBody->setCount(0);
     showBody->setPlainEditText(body);
+
     showBody->show();
-
-
-
-
-
 }

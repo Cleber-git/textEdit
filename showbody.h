@@ -20,6 +20,13 @@ public:
     ~ShowBody();
 
     /**
+     * @brief setCount
+     * Método responsável por definir o valor da variável membro @ref m_count
+     *
+     * @param _count
+     */
+    void setCount(int _count);
+    /**
      * @brief setPlainEditText
      *
      * Método responsável por atualizar a variável membro @ref m_body com o texto alterado pelo usuário

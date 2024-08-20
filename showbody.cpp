@@ -21,6 +21,7 @@ ShowBody::ShowBody(QWidget *parent) :
     m_btnUpdate->setText("Update");
     m_btnUpdate->hide();
     ui->msg_info->hide();
+    ui->lbl_ok->hide();
     this->setWindowTitle(m_title);
 }
 
@@ -35,6 +36,7 @@ void ShowBody::setPlainEditText(QString _text){
 }
 
 void ShowBody::on_change_Plain_Text(){
+    ui->lbl_ok->hide();
     m_count++;
     qDebug() << m_count;
     if(m_count <= 2){
@@ -56,9 +58,14 @@ void ShowBody::on_pushButton_clicked()
     m_btnUpdate->hide();
     m_count=0;
     ui->msg_info->hide();
+    ui->lbl_ok->show();
 }
 
 void ShowBody::receiveTitle(QString _title){
     m_title = _title;
+}
+
+void ShowBody::setCount(int _count){
+    m_count = _count;
 }
 
