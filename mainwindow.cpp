@@ -33,7 +33,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_m_navigator(bool){
+void MainWindow::on_m_navigator(bool _verify){
     hide();
     DbManager &db = DbManager::getInstance();
     db.countRows();

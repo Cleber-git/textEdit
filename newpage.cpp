@@ -35,19 +35,19 @@ NewPage::~NewPage()
     delete ui;
 }
 
-void NewPage::clearCurrentTab(bool any){
+void NewPage::clearCurrentTab(bool _any){
     plainList[m_currentPlainTextEdit]->clear();
 }
 
 
-void NewPage::deleteTable(bool any){
+void NewPage::deleteTable(bool _any){
     if(ui->tabWidget->count() == 1) return;
     plainList.remove(m_currentPlainTextEdit);
     ui->tabWidget->removeTab(m_currentPlainTextEdit);
 }
 
 
-void NewPage::addTable(bool any) {
+void NewPage::addTable(bool _any) {
     QTabBar* tabBar = new QTabBar;
     QPlainTextEdit *plainTextEdit = new QPlainTextEdit(tabBar);
 
@@ -57,7 +57,7 @@ void NewPage::addTable(bool any) {
 
 }
 
-void NewPage::saveTable(bool any) {
+void NewPage::saveTable(bool _any) {
     box->show();
 }
 
@@ -66,6 +66,8 @@ void NewPage::setCurrentWidget(int index){
 }
 
 void NewPage::getTitle(QString _title){
+    if(this->isHidden()) return;
+    qDebug() << "Está em foco";
     DbManager &db = DbManager::getInstance();
     m_title = _title;
 //    db.openDB();
