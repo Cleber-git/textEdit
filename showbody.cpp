@@ -16,6 +16,10 @@ ShowBody::ShowBody(QWidget *parent) :
 
     ui->setupUi(this);
 
+
+    Log &log = Log::getInstance();
+    log.log(this->objectName() + " Refresh");
+
     connect(ui->plainTextEdit, SIGNAL(textChanged()), this, SLOT(on_change_Plain_Text()));
     connect(m_btnUpdate, SIGNAL(clicked(bool)), this, SLOT(on_pushButton_clicked()));
     m_btnUpdate->setGeometry(1220,10,61,20);

@@ -1,11 +1,15 @@
 #include "boxtitle.h"
 #include "ui_boxtitle.h"
+#include "log.h"
 
 BoxTitle::BoxTitle(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::BoxTitle)
 {
     ui->setupUi(this);
+
+    Log &log = Log::getInstance();
+    log.log(this->objectName() + " Refresh");
 }
 
 BoxTitle::~BoxTitle()

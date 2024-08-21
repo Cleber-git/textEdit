@@ -2,6 +2,7 @@
 #include "ui_newpage.h"
 #include "dbmanager.h"
 #include "mainwindow.h"
+#include "log.h"
 
 #include <QProcess>
 #include <QLabel>
@@ -18,6 +19,9 @@ NewPage::NewPage(QWidget *parent)
 {
     ui->setupUi(this);
 
+    Log &log = Log::getInstance();
+    log.log(this->objectName() + " Refresh");
+
     box = new BoxTitle();
     connect(ui->Clear_tab, SIGNAL(clicked(bool)), this, SLOT(clearCurrentTab(bool)));
     connect(ui->Delet_tab, SIGNAL(clicked(bool)), this, SLOT(deleteTable(bool)));
@@ -27,7 +31,6 @@ NewPage::NewPage(QWidget *parent)
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(setCurrentWidget(int)));
 
     connect(box, SIGNAL(sendTitle(QString)), this, SLOT(getTitle(QString)));
-
 }
 
 NewPage::~NewPage()
@@ -38,7 +41,6 @@ NewPage::~NewPage()
 void NewPage::clearCurrentTab(bool _any){
     plainList[m_currentPlainTextEdit]->clear();
 }
-
 
 void NewPage::deleteTable(bool _any){
     if(ui->tabWidget->count() == 1) return;

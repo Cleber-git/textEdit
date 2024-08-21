@@ -9,6 +9,7 @@ Log::Log() {
 
     m_path = qApp->applicationDirPath() + "/Log/" + currentDate + ".txt";
     m_file.setFileName(m_path);
+
     if(!m_file.open(QIODevice::WriteOnly | QIODevice::Append)){
         qDebug()<< "Arquivo de log não pôde ser aberto";
         return;
@@ -29,4 +30,3 @@ Log &Log::getInstance(){
     return (*instance);
 
 }
-

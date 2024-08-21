@@ -13,7 +13,7 @@ DbManager &DbManager::getInstance(){
     }
     return (*instance);
 }
-bool DbManager::openDB( ){
+bool DbManager::openDB(){
     return m_db.openDB();
 }
 
