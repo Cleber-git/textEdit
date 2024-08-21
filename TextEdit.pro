@@ -14,6 +14,7 @@ SOURCES += \
     boxtitle.cpp \
     db.cpp \
     dbmanager.cpp \
+    log.cpp \
     main.cpp \
     mainwindow.cpp \
     newpage.cpp \
@@ -23,6 +24,7 @@ HEADERS += \
     boxtitle.h \
     db.h \
     dbmanager.h \
+    log.h \
     mainwindow.h \
     newpage.h \
     showbody.h

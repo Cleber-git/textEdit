@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "showbody.h"
+#include "log.h"
 
 #include <QSizePolicy>
 #include <QDebug>
@@ -12,6 +13,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     m_navigator = new QPushButton(this);
 
+
+    Log &log = Log::getInstance();
+    log.log("MainWindow refresh");
+
+    // log.log("primeiro log");
     m_db.openDB();
 
     m_navigator->setGeometry(1450, 40, 40, 30);

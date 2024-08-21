@@ -1,6 +1,7 @@
 #include "showbody.h"
 #include "ui_showbody.h"
 #include "mainwindow.h"
+#include "log.h"
 
 #include <QPlainTextEdit>
 #include <QDebug>
