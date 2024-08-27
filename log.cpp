@@ -17,10 +17,12 @@ Log::Log() {
 }
 
 void Log::log(const QString &_text){
+    m_mutex.lock();
     QTime *time = new QTime;
     QString currentHour = time->currentTime().toString("hh:mm:ss:mm");
     QTextStream out(&m_file);
     out << "[ " << currentHour << " ] " << _text << "\n";
+    m_mutex.unlock();
 }
 
 Log &Log::getInstance(){

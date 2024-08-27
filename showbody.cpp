@@ -41,6 +41,7 @@ void ShowBody::setPlainEditText(QString _text){
 }
 
 void ShowBody::on_change_Plain_Text(){
+
     ui->lbl_ok->hide();
     m_count++;
     qDebug() << m_count;

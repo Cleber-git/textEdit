@@ -8,8 +8,8 @@ BoxTitle::BoxTitle(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    Log &log = Log::getInstance();
-    log.log(this->objectName() + " Refresh");
+
+    LOGIN.log(this->objectName() + " Refresh");
 }
 
 BoxTitle::~BoxTitle()
