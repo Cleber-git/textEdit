@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/ferramentas">
         <file>build/Desktop_Qt_6_7_2_MSVC2019_64bit-Debug/bin/button.png</file>
+        <file>vIHyJ.gif</file>
     </qresource>
 </RCC>

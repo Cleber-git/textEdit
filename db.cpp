@@ -36,10 +36,6 @@ int Db::countRows(){
             return 0;
         } 
     }
-    qDebug() << "chamei a recursiva";
-
-//    openDB();
-//    countRows();
 }
 
 //testado: [ OK ]
@@ -57,13 +53,9 @@ QVector<QString> Db::getTitle(){
             }
             return m_titleList;
         }
-        qDebug() << "[ getTitle ] " <<"Não foi possível executar a busca por títulos. ";
+        qDebug() << "[ getTitle ] " <<"Não foi possível executar a busca por títulos.";
         return m_titleList;
     }
-    qDebug() << "chamei a recursiva getTitle";
-    m_titleList.clear();
-    openDB();
-    getTitle();
 }
 
 //testado [ OK ]
@@ -84,10 +76,6 @@ void Db::SaveInfo(QString _title, QString _body){
         qDebug() << "[ SaveInfo ] "<< "Não foi possível executar a query de salvar informações na base de dados";
         return;
     }
-    qDebug() << "chamei a recursiva";
-
-//    openDB();
-//    SaveInfo(_title, _body);
 }
 
 
@@ -108,10 +96,6 @@ void Db::deleteInfo(QString _title) {
         qDebug() <<"[ deleteInfo ] " << "Não foi possível executar query que deleta informações da base de dados";
         return;
     }
-    qDebug() << "chamei a recursiva";
-
-//    openDB();
-//    deleteInfo(_title);
 }
 
 // testado:[ OK ]
@@ -132,10 +116,6 @@ void Db::update(QString _title, QString _body){
         qDebug() << "[ update ] " << "Não foi possível executar a query de update dos dados";
         return;
     }
-    qDebug() << "chamei a recursiva";
-
-//    openDB();
-//    update(_title, _body);
 }
 
 
@@ -155,7 +135,4 @@ QString Db::getBody(QString _title){
             return body;
         }
     }
-    qDebug() << "chamei a recursiva getBody";
-    openDB();
-    getBody(_title);
 }

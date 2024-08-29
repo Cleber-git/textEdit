@@ -3,22 +3,28 @@
 #include "showbody.h"
 #include "log.h"
 
+
 #include <QSizePolicy>
 #include <QDebug>
+#include <QMovie>
+// #include <QCharts/QChart>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    m_navigator = new QPushButton(this);
 
+    // setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
+    // setAttribute(Qt::WA_DeleteOnClose);
+
+    m_navigator = new QPushButton(this);
 
     Log &log = Log::getInstance();
     log.log("MainWindow refresh");
 
-    // log.log("primeiro log");
     m_db.openDB();
+    m_timer = new QTimer();
 
     m_navigator->setGeometry(1450, 40, 40, 30);
     m_navigator->setFont(QFont("Arial", 18, 800));
@@ -26,11 +32,13 @@ MainWindow::MainWindow(QWidget *parent)
     m_navigator->show();
     m_navigator->setText("+");
 
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(showLabelDescanse()));
     connect(m_navigator, SIGNAL(clicked(bool)), this, SLOT(on_m_navigator(bool)));
     connect(this, SIGNAL(sendTitle(QString)), showBody, SLOT(receiveTitle(QString)));
-
+    m_timer->start(5000);
     makeInit();
     this->setStyleSheet("background: #363636 ;");
+    ui->lbl_descanso->hide();
 
 }
 
@@ -107,7 +115,8 @@ void MainWindow::connectButtons(){
 
 void MainWindow::on_current_button_clicked(){
     for(QPushButton* button: listScreens){
-        if (button->isChecked()) {
+
+        if (button->isChecked()){
             showBodyByTitle(button->text());
             emit sendTitle(button->text());
             button->setChecked(false);
@@ -122,4 +131,23 @@ void MainWindow::showBodyByTitle(QString _title){
     showBody->setPlainEditText(body);
 
     showBody->show();
+}
+
+void MainWindow::mousePressEvent(QMouseEvent* event){
+    if(event->button() == Qt::LeftButton){
+        qDebug() << "Cliquei no botão esquerdo";
+    }
+    QWidget::mousePressEvent(event);
+}
+
+void MainWindow::showLabelDescanse(){
+    qDebug() << "chamei o slot";
+    movie = new QMovie(":/ferramentas/vIHyJ.gif");
+    ui->lbl_descanso->setMovie(movie);
+    ui->lbl_descanso->setAlignment(Qt::AlignCenter);
+    ui->lbl_descanso->setScaledContents(true);
+
+    movie->start();
+
+    ui->lbl_descanso->show();
 }
