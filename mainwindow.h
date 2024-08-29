@@ -4,6 +4,9 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QVector>
+#include <QMouseEvent>
+#include <QTimer>
+#include <QMovie>
 
 #include "dbmanager.h"
 #include "newpage.h"
@@ -77,7 +80,8 @@ public:
    * slot @ref on_current_button_clicked
    */
     void connectButtons();
-
+protected:
+    void mousePressEvent(QMouseEvent*) override;
 public slots:
     /**
    * @brief on_m_navigator
@@ -103,9 +107,12 @@ public slots:
    * @param _title
    */
     void showBodyByTitle(QString _title);
+    void showLabelDescanse();
 
 signals:
     void sendTitle(QString);
+
+
 
 private:
     Ui::MainWindow *ui;
@@ -116,5 +123,7 @@ private:
     POS lastPositionButton;
     ShowBody *showBody = new ShowBody;
     QString m_title;
+    QTimer *m_timer;
+    QMovie *movie;
 };
 #endif // MAINWINDOW_H
