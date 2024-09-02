@@ -16,7 +16,6 @@ ShowBody::ShowBody(QWidget *parent) :
 
     ui->setupUi(this);
 
-
     Log &log = Log::getInstance();
     log.log(this->objectName() + " Refresh");
 
@@ -28,6 +27,7 @@ ShowBody::ShowBody(QWidget *parent) :
     ui->msg_info->hide();
     ui->lbl_ok->hide();
     this->setWindowTitle(m_title);
+    this->setStyleSheet("border-image: url(qrc:/ferramentas/plano_de_fundo_text.jpeg) ;");
 }
 
 ShowBody::~ShowBody()
@@ -74,4 +74,3 @@ void ShowBody::receiveTitle(QString _title){
 void ShowBody::setCount(int _count){
     m_count = _count;
 }
-

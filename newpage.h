@@ -2,12 +2,14 @@
 #define NEWPAGE_H
 
 #include "boxtitle.h"
+
 #include <QDialog>
 #include <QPlainTextEdit>
 #include <QSqlDatabase>
 #include <QTabBar>
 #include <QVector>
 #include <QWidget>
+#include <QLabel>
 
 namespace Ui {
 class NewPage;
@@ -73,6 +75,8 @@ public slots:
    * @param _title
    */
     void getTitle(QString _title);
+
+    QLabel* getLabelBackground();
 
 private slots:
     void on_pushButton_clicked();

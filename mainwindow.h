@@ -83,6 +83,7 @@ public:
 protected:
     void mousePressEvent(QMouseEvent*) override;
 public slots:
+
     /**
    * @brief on_m_navigator
    * Slot responspável por chamar a interface da classe @ref NewPage
@@ -107,7 +108,17 @@ public slots:
    * @param _title
    */
     void showBodyByTitle(QString _title);
+
+    /**
+     * @brief showLabelDescanse
+     * Slot responsável por exibir o descanso de tela
+     *
+     */
     void showLabelDescanse();
+
+    void on_change_radioButton();
+    void on_change_radioButton_1();
+    void on_change_radioButton_2();
 
 signals:
     void sendTitle(QString);
@@ -121,7 +132,7 @@ private:
     DbManager &m_db = DbManager::getInstance();
     QVector<QString> listTitle;
     POS lastPositionButton;
-    ShowBody *showBody = new ShowBody;
+    ShowBody *showBody = new ShowBody();
     QString m_title;
     QTimer *m_timer;
     QMovie *movie;

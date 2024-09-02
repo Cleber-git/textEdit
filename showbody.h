@@ -6,7 +6,6 @@
 #include <QPlainTextEdit>
 #include <QPushButton>
 #include <QWidget>
-
 namespace Ui {
 class ShowBody;
 }
@@ -62,6 +61,8 @@ public slots:
    * @param _title
    */
     void receiveTitle(QString _title);
+
+
 
 private:
     QString m_body;
