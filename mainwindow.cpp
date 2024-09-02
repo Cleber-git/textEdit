@@ -3,7 +3,6 @@
 #include "showbody.h"
 #include "log.h"
 
-
 #include <QSizePolicy>
 #include <QDebug>
 #include <QMovie>

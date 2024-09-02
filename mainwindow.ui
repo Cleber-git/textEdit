@@ -45,7 +45,15 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: white ;</string>
+        <string notr="true">QRadioButton{
+color: white ;
+}
+QRadioButton::indicator::checked {
+    border: 2px solid #555;
+    background-color: yellow;
+	color: white ;
+	border-radius: 2px ;
+}</string>
        </property>
        <property name="text">
         <string>Yellow</string>
@@ -60,7 +68,14 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: white ;</string>
+        <string notr="true">QRadioButton{
+color: white ;
+}
+QRadioButton::indicator::checked { 
+    border: 2px solid #555;
+    background-color: green;
+	color: white ;    
+}</string>
        </property>
        <property name="text">
         <string>Green</string>
@@ -75,7 +90,14 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: white ;</string>
+        <string notr="true">QRadioButton{
+color: white ;
+}
+QRadioButton::indicator::checked {
+            border: 2px solid #555;
+            background-color: red;
+			color: white ;
+        }</string>
        </property>
        <property name="text">
         <string>Red</string>
