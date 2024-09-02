@@ -35,12 +35,22 @@ MainWindow::MainWindow(QWidget *parent)
     // connect(m_timer, SIGNAL(timeout()), this, SLOT(showLabelDescanse()));
     connect(m_navigator, SIGNAL(clicked(bool)), this, SLOT(on_m_navigator(bool)));
     connect(this, SIGNAL(sendTitle(QString)), showBody, SLOT(receiveTitle(QString)));
-    m_timer->start(5000);
+    connect(ui->radioButton, SIGNAL(clicked(bool)), this, SLOT(on_change_radioButton()));
+    connect(ui->radioButton_2, SIGNAL(clicked(bool)), this, SLOT(on_change_radioButton_1()));
+    connect(ui->radioButton_3, SIGNAL(clicked(bool)), this, SLOT(on_change_radioButton_2()));
+
     makeInit();
+
     this->setStyleSheet("background: #363636 ;");
+
     ui->lbl_descanso->hide();
+
     showLabelDescanse();
-    this->setGeometry(0, 0, 1500, 700);
+
+    this->setGeometry(0, 0, 1500, 707);
+    ui->radioButton->show();
+    ui->radioButton_2->show();
+    ui->radioButton_3->show();
 }
 
 MainWindow::~MainWindow()
@@ -155,3 +165,22 @@ void MainWindow::showLabelDescanse(){
 
     ui->lbl_descanso->show();
 }
+void MainWindow::on_change_radioButton(){
+    for(QPushButton *button: listScreens){
+        button->setStyleSheet("background: red ; border-radius: 50px ; font-weight: bold ; color: #ffffff; font-family: cursive ;");
+    }
+    m_navigator->setStyleSheet("Background: red ;color: #ffffff ; border-radius: 15px ;");
+}
+void MainWindow::on_change_radioButton_1(){
+    for(QPushButton *button: listScreens){
+        button->setStyleSheet("background: yellow ; border-radius: 50px ; font-weight: bold ; color: black; font-family: cursive ;");
+    }
+    m_navigator->setStyleSheet("Background: yellow ;color: #black ; border-radius: 15px ;");
+}
+void MainWindow::on_change_radioButton_2(){
+    for(QPushButton *button: listScreens){
+        button->setStyleSheet("background: green ; border-radius: 50px ; font-weight: bold ; color: #ffffff; font-family: cursive ;");
+    }
+    m_navigator->setStyleSheet("Background: #326500 ;color: #000000 ; border-radius: 15px ;");
+}
+
