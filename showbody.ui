@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">border-image: url(:/ferramentas/plano_de_fundo_text.jpeg);</string>
+  </property>
   <widget class="QPlainTextEdit" name="plainTextEdit">
    <property name="geometry">
     <rect>
@@ -21,6 +24,9 @@
      <width>1291</width>
      <height>621</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
   </widget>
   <widget class="QLabel" name="msg_info">
@@ -31,6 +37,10 @@
      <width>81</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: none ;
+background: white ;</string>
    </property>
    <property name="text">
     <string/>
@@ -48,7 +58,7 @@
    <property name="styleSheet">
     <string notr="true">color: green ;
 font-weight: bold ;
-</string>
+border-image: none ;</string>
    </property>
    <property name="text">
     <string>Ok</string>

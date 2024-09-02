@@ -121,7 +121,7 @@ private:
     DbManager &m_db = DbManager::getInstance();
     QVector<QString> listTitle;
     POS lastPositionButton;
-    ShowBody *showBody = new ShowBody;
+    ShowBody *showBody = new ShowBody();
     QString m_title;
     QTimer *m_timer;
     QMovie *movie;

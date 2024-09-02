@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
@@ -105,6 +108,7 @@ font-weight: bold ;
 font-size: 20px ;
 background: white ;
 color: black ;
+border-image: none ;
 }
 QPushButton::pressed{
 background: black ;
@@ -116,6 +120,26 @@ color: white ;
     <string>&lt;=</string>
    </property>
   </widget>
+  <widget class="QLabel" name="backgorund_plain">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1501</width>
+     <height>751</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-image: url(:/ferramentas/plano_de_fundo_text.jpeg);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>backgorund_plain</zorder>
+  <zorder>tabWidget</zorder>
+  <zorder>verticalLayoutWidget</zorder>
+  <zorder>pushButton</zorder>
  </widget>
  <resources/>
  <connections/>

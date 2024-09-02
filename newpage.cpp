@@ -23,13 +23,12 @@ NewPage::NewPage(QWidget *parent)
     log.log(this->objectName() + " Refresh");
 
     box = new BoxTitle();
+
     connect(ui->Clear_tab, SIGNAL(clicked(bool)), this, SLOT(clearCurrentTab(bool)));
     connect(ui->Delet_tab, SIGNAL(clicked(bool)), this, SLOT(deleteTable(bool)));
     connect(ui->Add_tab, SIGNAL(clicked(bool)), this, SLOT(addTable(bool)));
     connect(ui->Save, SIGNAL(clicked(bool)), this, SLOT(saveTable(bool)));
-
     connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(setCurrentWidget(int)));
-
     connect(box, SIGNAL(sendTitle(QString)), this, SLOT(getTitle(QString)));
 }
 
@@ -48,7 +47,6 @@ void NewPage::deleteTable(bool _any){
     ui->tabWidget->removeTab(m_currentPlainTextEdit);
 }
 
-
 void NewPage::addTable(bool _any) {
     QTabBar* tabBar = new QTabBar;
     QPlainTextEdit *plainTextEdit = new QPlainTextEdit(tabBar);
@@ -56,7 +54,6 @@ void NewPage::addTable(bool _any) {
     plainList.push_back(plainTextEdit);
     plainTextEdit->setGeometry(0, 5, 1361, 721);
     ui->tabWidget->addTab(tabBar, "Tab " + QString::number(ui->tabWidget->count()+1));
-
 }
 
 void NewPage::saveTable(bool _any) {
@@ -77,8 +74,6 @@ void NewPage::getTitle(QString _title){
     ui->tabWidget->setTabText(m_currentPlainTextEdit, m_title);
 }
 
-
-
 void NewPage::on_pushButton_clicked()
 {
     hide();
@@ -86,3 +81,6 @@ void NewPage::on_pushButton_clicked()
     w->show();
 }
 
+QLabel* NewPage::getLabelBackground(){
+    return ui->backgorund_plain;
+}

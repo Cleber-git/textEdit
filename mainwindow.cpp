@@ -28,18 +28,19 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_navigator->setGeometry(1450, 40, 40, 30);
     m_navigator->setFont(QFont("Arial", 18, 800));
-    m_navigator->setStyleSheet("Background: rgb(51, 8, 115) ;color: white ; border-radius: 15px ;");
+    m_navigator->setStyleSheet("Background: #326500 ;color: #000000 ; border-radius: 15px ;");
     m_navigator->show();
     m_navigator->setText("+");
 
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(showLabelDescanse()));
+    // connect(m_timer, SIGNAL(timeout()), this, SLOT(showLabelDescanse()));
     connect(m_navigator, SIGNAL(clicked(bool)), this, SLOT(on_m_navigator(bool)));
     connect(this, SIGNAL(sendTitle(QString)), showBody, SLOT(receiveTitle(QString)));
     m_timer->start(5000);
     makeInit();
     this->setStyleSheet("background: #363636 ;");
     ui->lbl_descanso->hide();
-
+    showLabelDescanse();
+    this->setGeometry(0, 0, 1500, 700);
 }
 
 MainWindow::~MainWindow()
@@ -53,6 +54,7 @@ void MainWindow::on_m_navigator(bool _verify){
     db.countRows();
 
     page.show();
+    page.getLabelBackground()->setStyleSheet("border-image: url(qrc:/ferramentas/plano_de_fundo_text.jpeg) ;");
 }
 
 
@@ -67,7 +69,7 @@ void MainWindow::createWidgets(){
     for ( QString titulo : listTitle ) {
         QPushButton *pushButton = new QPushButton(titulo, this);
         pushButton->setCheckable(true);
-        pushButton->setStyleSheet("background: white ; border-radius: 50px ; font-weight: bold ; color: rgb(51, 8, 115); font-family: cursive ; ");
+        pushButton->setStyleSheet("background: #326500 ; border-radius: 50px ; font-weight: bold ; color: #000000; font-family: cursive ; ");
         listScreens.push_back(pushButton);
 
         //// Como vou organizar os botões na tela?
@@ -130,6 +132,7 @@ void MainWindow::showBodyByTitle(QString _title){
     showBody->setCount(0);
     showBody->setPlainEditText(body);
 
+
     showBody->show();
 }
 
@@ -141,6 +144,7 @@ void MainWindow::mousePressEvent(QMouseEvent* event){
 }
 
 void MainWindow::showLabelDescanse(){
+    ui->lbl_descanso->setGeometry(this->geometry().x(), this->geometry().y(), this->geometry().width(), this->geometry().height());
     qDebug() << "chamei o slot";
     movie = new QMovie(":/ferramentas/vIHyJ.gif");
     ui->lbl_descanso->setMovie(movie);
